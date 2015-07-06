@@ -33,56 +33,69 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
-    if (self) {
-        
-        /// 初始化属性
-        self.LeftViewWidth = kLeftViewWidth;
-        self.leftViewBackgroudColor = kLeftViewBackgroundColor;
-        self.leftViewSeparatorColor = kLeftViewSeparatorColor;
-        
-        self.rightViewBackgroudColor = kRightViewBackgroundColor;
-        
-        self.selectIndex = 0;
-        
-        /// 初始化左视图
-        self.leftTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.LeftViewWidth, self.bounds.size.height) style:UITableViewStylePlain];
-        [self.leftTableView setBackgroundColor:self.leftViewBackgroudColor];
-        
-        [self.leftTableView setSeparatorColor:self.leftViewSeparatorColor];
-        [self.leftTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-
-        [self.leftTableView setTableFooterView:[UIView new]];
-        
-        [self.leftTableView registerNib:[UINib nibWithNibName:@"YCXMultilevelMenuViewLeftCell" bundle:nil] forCellReuseIdentifier:kLeftCell];
-        
-        [self.leftTableView setRowHeight:[YCXMultilevelMenuViewLeftCell cellHeight]];
-        [self.leftTableView setBounces:NO];
-        [self.leftTableView setShowsHorizontalScrollIndicator:NO];
-        [self.leftTableView setShowsVerticalScrollIndicator:NO];
-        
-        [self.leftTableView setDelegate:self];
-        
-        [self addSubview:self.leftTableView];
-        
-        
-        /// 初始化右视图
-        UICollectionViewFlowLayout *flowLayout =[[UICollectionViewFlowLayout alloc]init];
-        flowLayout.minimumLineSpacing = 0;
-        flowLayout.minimumInteritemSpacing = 0;
-        
-        
-        self.rightCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(self.LeftViewWidth, 0, self.bounds.size.width - self.LeftViewWidth, self.bounds.size.height) collectionViewLayout:flowLayout];
-        [self.rightCollectionView setBackgroundColor:self.rightViewBackgroudColor];
-
-        [self.rightCollectionView registerNib:[UINib nibWithNibName:@"YCXMultilevelMenuViewRightCell" bundle:nil] forCellWithReuseIdentifier:kRightCell];
-        [self.rightCollectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kRightViewHeader];
-        
-        self.rightCollectionView.delegate = self;
-        
-        [self addSubview:self.rightCollectionView];
-        
+    if (!self) {
+        return nil;
     }
+    [self commonInit];
     return self;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (!self) {
+        return nil;
+    }
+    [self commonInit];
+    return self;
+}
+
+- (void)commonInit {
+    
+    /// 初始化属性
+    self.LeftViewWidth = kLeftViewWidth;
+    self.leftViewBackgroudColor = kLeftViewBackgroundColor;
+    self.leftViewSeparatorColor = kLeftViewSeparatorColor;
+    
+    self.rightViewBackgroudColor = kRightViewBackgroundColor;
+    
+    self.selectIndex = 0;
+    
+    /// 初始化左视图
+    self.leftTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.LeftViewWidth, self.bounds.size.height) style:UITableViewStylePlain];
+    [self.leftTableView setBackgroundColor:self.leftViewBackgroudColor];
+    
+    [self.leftTableView setSeparatorColor:self.leftViewSeparatorColor];
+    [self.leftTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    
+    [self.leftTableView setTableFooterView:[UIView new]];
+    
+    [self.leftTableView registerNib:[UINib nibWithNibName:@"YCXMultilevelMenuViewLeftCell" bundle:nil] forCellReuseIdentifier:kLeftCell];
+    
+    [self.leftTableView setRowHeight:[YCXMultilevelMenuViewLeftCell cellHeight]];
+    [self.leftTableView setBounces:NO];
+    [self.leftTableView setShowsHorizontalScrollIndicator:NO];
+    [self.leftTableView setShowsVerticalScrollIndicator:NO];
+    
+    [self.leftTableView setDelegate:self];
+    
+    [self addSubview:self.leftTableView];
+    
+    
+    /// 初始化右视图
+    UICollectionViewFlowLayout *flowLayout =[[UICollectionViewFlowLayout alloc]init];
+    flowLayout.minimumLineSpacing = 0;
+    flowLayout.minimumInteritemSpacing = 0;
+    
+    
+    self.rightCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(self.LeftViewWidth, 0, self.bounds.size.width - self.LeftViewWidth, self.bounds.size.height) collectionViewLayout:flowLayout];
+    [self.rightCollectionView setBackgroundColor:self.rightViewBackgroudColor];
+    
+    [self.rightCollectionView registerNib:[UINib nibWithNibName:@"YCXMultilevelMenuViewRightCell" bundle:nil] forCellWithReuseIdentifier:kRightCell];
+    [self.rightCollectionView registerClass:[UICollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kRightViewHeader];
+    
+    self.rightCollectionView.delegate = self;
+    
+    [self addSubview:self.rightCollectionView];
 }
 
 - (void)layoutSubviews {

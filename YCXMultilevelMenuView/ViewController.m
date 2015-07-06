@@ -11,7 +11,7 @@
 
 @interface ViewController () <YCXMultilevelMenuViewDataSource, YCXMultilevelMenuViewDelegate>
 
-@property (nonatomic,strong) YCXMultilevelMenuView *multilevelMenu;
+@property (nonatomic,strong) IBOutlet YCXMultilevelMenuView *multilevelMenu;
 
 @end
 
@@ -21,7 +21,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.multilevelMenu = [[YCXMultilevelMenuView alloc] initWithFrame:self.view.bounds];
+    //self.multilevelMenu = [[YCXMultilevelMenuView alloc] initWithFrame:self.view.bounds];
     self.multilevelMenu.dataSource = self;
     self.multilevelMenu.delegate = self;
     

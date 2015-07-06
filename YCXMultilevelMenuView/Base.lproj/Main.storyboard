@@ -15,7 +15,19 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6m9-bf-8vO" customClass="YCXMultilevelMenuView">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6m9-bf-8vO" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="4Cx-1q-ejO"/>
+                            <constraint firstItem="6m9-bf-8vO" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="UaE-pt-NiN"/>
+                            <constraint firstAttribute="trailing" secondItem="6m9-bf-8vO" secondAttribute="trailing" id="VVO-vF-0NV"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="6m9-bf-8vO" secondAttribute="bottom" id="xB6-uJ-VaG"/>
+                        </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="YCXMultilevelMenuView" id="SYt-ex-eNj">
@@ -25,6 +37,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="multilevelMenu" destination="6m9-bf-8vO" id="Ubd-aB-AMI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
