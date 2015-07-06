@@ -38,6 +38,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="menuTop" destination="4Cx-1q-ejO" id="VY7-nI-jaK"/>
                         <outlet property="multilevelMenu" destination="6m9-bf-8vO" id="Ubd-aB-AMI"/>
                     </connections>
                 </viewController>

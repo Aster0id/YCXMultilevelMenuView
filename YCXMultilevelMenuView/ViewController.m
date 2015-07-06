@@ -11,8 +11,8 @@
 
 @interface ViewController () <YCXMultilevelMenuViewDataSource, YCXMultilevelMenuViewDelegate>
 
-@property (nonatomic,strong) IBOutlet YCXMultilevelMenuView *multilevelMenu;
-
+@property (nonatomic, weak) IBOutlet YCXMultilevelMenuView *multilevelMenu;
+@property (nonatomic, weak) IBOutlet NSLayoutConstraint *menuTop;
 @end
 
 @implementation ViewController
@@ -42,11 +42,13 @@
         self.multilevelMenu.rightViewBackgroudColor = kRightViewBackgroundColor;
         self.multilevelMenu.leftViewSeparatorColor = kLeftViewSeparatorColor;
         self.multilevelMenu.leftViewBackgroudColor = kLeftViewBackgroundColor;
+        self.menuTop.constant = 0;
     } else {
         self.multilevelMenu.LeftViewWidth = 80;
         self.multilevelMenu.rightViewBackgroudColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.85 alpha:1];
         self.multilevelMenu.leftViewSeparatorColor = [UIColor redColor];
         self.multilevelMenu.leftViewBackgroudColor = [UIColor colorWithRed:0.769 green:0.855 blue:0.686 alpha:1];
+        self.menuTop.constant = 80;
     }
 }
 
