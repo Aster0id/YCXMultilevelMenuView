@@ -19,9 +19,9 @@
 
 @required
 
-
 - (NSInteger)numberOfChildrenInMenuView:(YCXMultilevelMenuView *)menuView;
 - (NSInteger)menuView:(YCXMultilevelMenuView *)menuView numberOfSectionsAtChildIndex:(NSInteger)index;
+- (NSInteger)menuView:(YCXMultilevelMenuView *)menuView numberOfItemsAtChildIndex:(NSInteger)index section:(NSInteger)section;;
 
 - (NSString *)menuView:(YCXMultilevelMenuView *)menuView rightViewHeaderTitleAtChildIndex:(NSInteger)index section:(NSInteger)section;
 - (NSString *)menuView:(YCXMultilevelMenuView *)menuView leftViewTitleAtChildIndex:(NSInteger)index;

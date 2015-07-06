@@ -62,6 +62,9 @@
     return index == 0?2:1;
 }
 
+- (NSInteger)menuView:(YCXMultilevelMenuView *)menuView numberOfItemsAtChildIndex:(NSInteger)index section:(NSInteger)section {
+    return arc4random()%5 == 0;
+}
 - (NSString *)menuView:(YCXMultilevelMenuView *)menuView leftViewTitleAtChildIndex:(NSInteger)index {
     return [NSString stringWithFormat:@"子视图%zd",index];
 }
