@@ -3,7 +3,7 @@ Pod::Spec.new do |s|
   # ―――  Spec Metadata  ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
 
   s.name = "YCXMultilevelMenuView"
-  s.version = “0.0.4”
+  s.version = "0.0.4"
   s.summary = "多级菜单控件."
 
   s.homepage = "https://github.com/Aster0id/YCXMultilevelMenuView"
@@ -27,7 +27,7 @@ Pod::Spec.new do |s|
 
   # ――― Source Location ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
 
-  s.source = { :git => "https://github.com/Aster0id/YCXMultilevelMenuView.git", :tag => “0.0.4” }
+  s.source = { :git => "https://github.com/Aster0id/YCXMultilevelMenuView.git", :tag => "0.0.4" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
