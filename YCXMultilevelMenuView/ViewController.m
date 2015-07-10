@@ -37,14 +37,14 @@
 #pragma mark - Actions
 
 - (IBAction)clickRightItem {
-    if (self.multilevelMenu.LeftViewWidth != kLeftViewWidth) {
-        self.multilevelMenu.LeftViewWidth = kLeftViewWidth;
+    if (self.multilevelMenu.leftViewWidth != kLeftViewWidth) {
+        self.multilevelMenu.leftViewWidth = kLeftViewWidth;
         self.multilevelMenu.rightViewBackgroudColor = kRightViewBackgroundColor;
         self.multilevelMenu.leftViewSeparatorColor = kLeftViewSeparatorColor;
         self.multilevelMenu.leftViewBackgroudColor = kLeftViewBackgroundColor;
         self.menuTop.constant = 0;
     } else {
-        self.multilevelMenu.LeftViewWidth = 80;
+        self.multilevelMenu.leftViewWidth = 80;
         self.multilevelMenu.rightViewBackgroudColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.85 alpha:1];
         self.multilevelMenu.leftViewSeparatorColor = [UIColor redColor];
         self.multilevelMenu.leftViewBackgroudColor = [UIColor colorWithRed:0.769 green:0.855 blue:0.686 alpha:1];
@@ -52,6 +52,18 @@
     }
 }
 
+-(IBAction)refresh:(id)sender {
+    self.multilevelMenu.leftViewWidth = arc4random()%90 + 60;
+    self.multilevelMenu.rightViewBackgroudColor = [self randomColor];
+    self.multilevelMenu.leftViewSeparatorColor = [self randomColor];;
+    self.multilevelMenu.leftViewBackgroudColor = [self randomColor];;
+
+    [self.multilevelMenu reloadData];
+}
+
+- (UIColor *)randomColor {
+    return [UIColor colorWithRed:(arc4random()%122 + 122)/255.0 green:(arc4random()%122 + 122)/255.0 blue:(arc4random()%122 + 122)/255.0 alpha:1.0];
+}
 
 #pragma mark - YCXMultilevelMenuViewDataSource
 - (NSInteger)numberOfChildrenInMenuView:(YCXMultilevelMenuView *)menuView {
@@ -63,13 +75,14 @@
 }
 
 - (NSInteger)menuView:(YCXMultilevelMenuView *)menuView numberOfItemsAtChildIndex:(NSInteger)index section:(NSInteger)section {
-    return arc4random()%5 == 0;
+    return arc4random()%5;
 }
 - (NSString *)menuView:(YCXMultilevelMenuView *)menuView leftViewTitleAtChildIndex:(NSInteger)index {
     return [NSString stringWithFormat:@"子视图%zd",index];
 }
 
-- (NSString *)menuView:(YCXMultilevelMenuView *)menuView rightViewHeaderTitleAtChildIndex:(NSInteger)index section:(NSInteger)section {
+
+- (CGSize)menuView:(YCXMultilevelMenuView *)menuView referenceSizeForRightViewHeaderAtChildIndex:(NSInteger)index section:(NSInteger)section {
     NSString *rightViewHeaderTitle = @"";
     if (index == 0 && section == 0) {
         rightViewHeaderTitle = @"收藏板块";
@@ -77,8 +90,48 @@
     if (index == 0 && section == 1) {
         rightViewHeaderTitle = @"推荐板块";
     }
-    return rightViewHeaderTitle;
+    
+    return rightViewHeaderTitle.length>0?CGSizeMake(menuView.bounds.size.width - menuView.leftViewWidth,32):CGSizeZero;
 }
+
+- (UIView *)menuView:(YCXMultilevelMenuView *)menuView rightViewHeaderOnSuperView:(UICollectionReusableView *)superView atChildIndex:(NSInteger)index indexPath:(NSIndexPath *)indexPath {
+    
+    NSString *rightViewHeaderTitle = @"";
+    if (index == 0 && indexPath.section == 0) {
+        rightViewHeaderTitle = @"收藏板块";
+    }
+    if (index == 0 && indexPath.section == 1) {
+        rightViewHeaderTitle = @"推荐板块";
+    }
+    
+    UIView *view = [UIView new];
+    view.frame = superView.bounds;
+    
+    
+    UILabel *headerTitle = [[UILabel alloc] initWithFrame: CGRectMake(40, 0, view.frame.size.width, view.frame.size.height)];
+    [headerTitle setFont:[UIFont systemFontOfSize:13.0]];
+    [headerTitle setTextColor:YCXColorFromRGB(0x888888)];
+    headerTitle.text = rightViewHeaderTitle;
+    [view addSubview:headerTitle];
+    
+    
+    UIImageView *star = [[UIImageView alloc] initWithFrame:CGRectMake(12, 6, 20, 20)];
+    star.contentMode = UIViewContentModeScaleAspectFit;
+    if (indexPath.section == 0) {
+        star.image = [UIImage imageNamed:@"icon_star_yellow"];
+    } else{
+        star.image = [UIImage imageNamed:@"icon_star_green"];
+        
+    }
+    [view addSubview:star];
+    
+    UIView *bottomLine = [[UIView alloc] initWithFrame:CGRectMake(10, view.frame.size.height- 0.5, view.frame.size.width - 20, 0.5)];
+    [bottomLine setBackgroundColor:[UIColor lightGrayColor]];
+    [view addSubview:bottomLine];
+    
+    return view;
+}
+
 
 - (UICollectionViewCell *)menuView:(YCXMultilevelMenuView *)menuView cellForRightViewAtChildIndex:(NSInteger)index indexPath:(NSIndexPath *)indexPath withCell:(YCXMultilevelMenuViewRightCell *)cell {
     

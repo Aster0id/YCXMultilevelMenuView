@@ -13,7 +13,7 @@
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                        <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6m9-bf-8vO" customClass="YCXMultilevelMenuView">
@@ -30,13 +30,20 @@
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="YCXMultilevelMenuView" id="SYt-ex-eNj">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="yme-n8-T3C">
+                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="gLF-WV-VCx">
+                            <connections>
+                                <action selector="refresh:" destination="vXZ-lx-hvc" id="VU7-45-Lca"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Theme" id="yme-n8-T3C">
                             <connections>
                                 <action selector="clickRightItem" destination="vXZ-lx-hvc" id="oGC-NS-Ur2"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="menuTop" destination="4Cx-1q-ejO" id="VY7-nI-jaK"/>
                         <outlet property="multilevelMenu" destination="6m9-bf-8vO" id="Ubd-aB-AMI"/>

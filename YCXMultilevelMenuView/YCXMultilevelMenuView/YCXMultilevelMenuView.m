@@ -52,7 +52,7 @@
 - (void)commonInit {
     
     /// 初始化属性
-    self.LeftViewWidth = kLeftViewWidth;
+    self.leftViewWidth = kLeftViewWidth;
     self.leftViewBackgroudColor = kLeftViewBackgroundColor;
     self.leftViewSeparatorColor = kLeftViewSeparatorColor;
     
@@ -61,7 +61,7 @@
     self.selectIndex = 0;
     
     /// 初始化左视图
-    self.leftTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.LeftViewWidth, self.bounds.size.height) style:UITableViewStylePlain];
+    self.leftTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.leftViewWidth, self.bounds.size.height) style:UITableViewStylePlain];
     [self.leftTableView setBackgroundColor:self.leftViewBackgroudColor];
     
     [self.leftTableView setSeparatorColor:self.leftViewSeparatorColor];
@@ -87,7 +87,7 @@
     flowLayout.minimumInteritemSpacing = 0;
     
     
-    self.rightCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(self.LeftViewWidth, 0, self.bounds.size.width - self.LeftViewWidth, self.bounds.size.height) collectionViewLayout:flowLayout];
+    self.rightCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(self.leftViewWidth, 0, self.bounds.size.width - self.leftViewWidth, self.bounds.size.height) collectionViewLayout:flowLayout];
     [self.rightCollectionView setBackgroundColor:self.rightViewBackgroudColor];
     
     [self.rightCollectionView registerNib:[UINib nibWithNibName:@"YCXMultilevelMenuViewRightCell" bundle:nil] forCellWithReuseIdentifier:kRightCell];
@@ -100,8 +100,8 @@
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    self.leftTableView.frame = CGRectMake(0, 0, self.LeftViewWidth, self.bounds.size.height);
-    self.rightCollectionView.frame = CGRectMake(self.LeftViewWidth, 0, self.bounds.size.width - self.LeftViewWidth, self.bounds.size.height);
+    self.leftTableView.frame = CGRectMake(0, 0, self.leftViewWidth, self.bounds.size.height);
+    self.rightCollectionView.frame = CGRectMake(self.leftViewWidth, 0, self.bounds.size.width - self.leftViewWidth, self.bounds.size.height);
 }
 
 #pragma mark - Private Methods
@@ -117,6 +117,11 @@
     [self.rightCollectionView reloadData];
     
     
+}
+
+#pragma mark - Public Methods
+- (void)reloadData {
+    [self updateSubviews];
 }
 
 #pragma mark - UITableViewDataSource
@@ -163,11 +168,14 @@
 
 #pragma mark - UICollectionViewDelegateFlowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
-    return [self.dataSource menuView:self rightViewHeaderTitleAtChildIndex:self.selectIndex section:section].length>0?CGSizeMake(self.bounds.size.width - self.LeftViewWidth, 32):CGSizeZero;
+    if (self.dataSource && [self.dataSource respondsToSelector:@selector(menuView:referenceSizeForRightViewHeaderAtChildIndex:section:)]) {
+        return [self.dataSource menuView:self referenceSizeForRightViewHeaderAtChildIndex:self.selectIndex section:section];
+    }
+    return CGSizeZero;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(self.bounds.size.width - self.LeftViewWidth, [YCXMultilevelMenuViewRightCell cellHeight]);
+    return CGSizeMake(self.bounds.size.width - self.leftViewWidth, [YCXMultilevelMenuViewRightCell cellHeight]);
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -195,17 +203,14 @@
         for (UIView *view in header.subviews) {[view removeFromSuperview];}
         [header setBackgroundColor:[UIColor clearColor]];
         
-        
-        UILabel *headerTitle = [[UILabel alloc] initWithFrame: CGRectMake(12, 0, header.frame.size.width, header.frame.size.height)];
-        [headerTitle setFont:[UIFont systemFontOfSize:13.0]];
-        [headerTitle setTextColor:YCXColorFromRGB(0x888888)];
-        headerTitle.text = [self.dataSource menuView:self rightViewHeaderTitleAtChildIndex:self.selectIndex section:indexPath.section];
-        [header addSubview:headerTitle];
-        
-        
-        UIView *bottomLine = [[UIView alloc] initWithFrame:CGRectMake(10, header.frame.size.height- 0.5, header.frame.size.width - 20, 0.5)];
-        [bottomLine setBackgroundColor:[UIColor lightGrayColor]];
-        [header addSubview:bottomLine];
+        UIView *view;
+        if (self.dataSource && [self.dataSource respondsToSelector:@selector(menuView:rightViewHeaderOnSuperView:atChildIndex:indexPath:)]) {
+            view = [self.dataSource menuView:self rightViewHeaderOnSuperView:header atChildIndex:self.selectIndex indexPath:indexPath];
+        }
+        if (view) {
+            [header addSubview:view];
+        }
+
         return header;
     }
     
@@ -239,7 +244,7 @@
 }
 
 - (void)setLeftViewWidth:(CGFloat)LeftViewWidth {
-    _LeftViewWidth = LeftViewWidth;
+    _leftViewWidth = LeftViewWidth;
     [self layoutSubviews];
     [self updateSubviews];
 }
