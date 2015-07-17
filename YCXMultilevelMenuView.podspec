@@ -41,7 +41,7 @@ Pod::Spec.new do |s|
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
 
   # s.resource  = "icon.png"
-  s.resources = "YCXMultilevelMenuView/YCXMultilevelMenuView/*.{xib,png}",
+  s.resources = "YCXMultilevelMenuView/YCXMultilevelMenuView/**/*.{xib,png}",
 
   # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
 
