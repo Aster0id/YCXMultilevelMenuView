@@ -80,7 +80,7 @@
 
 - (UIFont *)titleFont {
     if (!_titleFont) {
-        _titleFont = [UIFont systemFontOfSize:15.0];
+        _titleFont = kLeftViewTitleFont;
     }
     return _titleFont;
 }

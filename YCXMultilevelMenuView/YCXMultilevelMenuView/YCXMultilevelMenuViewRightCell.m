@@ -18,12 +18,15 @@
 @property (nonatomic, weak) IBOutlet UILabel *title;
 @property (nonatomic, weak) IBOutlet UILabel *topicCount;
 @property (nonatomic, weak) IBOutlet UILabel *content;
-@property (nonatomic, weak) IBOutlet UILabel *isNewIcon;
+@property (nonatomic, weak) IBOutlet UIImageView *isNewIcon;
+@property (nonatomic, weak) IBOutlet UIView  *bottomLine;
 
 @end
 
 
 @implementation YCXMultilevelMenuViewRightCell
+
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     
@@ -55,6 +58,13 @@
         self.isNewIcon.hidden = YES;
         [self.content setText:content];
     }
+}
+
+#pragma mark - setter/getter
+
+- (void)setHiddenBottomLine:(BOOL)hiddenBottomLine {
+    _hiddenBottomLine = hiddenBottomLine;
+    self.bottomLine.hidden = _hiddenBottomLine;
 }
 
 @end

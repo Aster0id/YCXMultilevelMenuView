@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2933B91CE7BCECA54BC97E47 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DAC6751B1F41A2438EB082B /* libPods.a */; };
+		333660781B58A426006A8F05 /* YCXMultilevelMenuViewRightCell_Icon_New.png in Resources */ = {isa = PBXBuildFile; fileRef = 333660771B58A426006A8F05 /* YCXMultilevelMenuViewRightCell_Icon_New.png */; };
 		338237081B451A42008324C9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 338237071B451A42008324C9 /* main.m */; };
 		3382370B1B451A42008324C9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3382370A1B451A42008324C9 /* AppDelegate.m */; };
 		3382370E1B451A42008324C9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3382370D1B451A42008324C9 /* ViewController.m */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		333660771B58A426006A8F05 /* YCXMultilevelMenuViewRightCell_Icon_New.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YCXMultilevelMenuViewRightCell_Icon_New.png; sourceTree = "<group>"; };
 		338237021B451A42008324C9 /* YCXMultilevelMenuView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YCXMultilevelMenuView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		338237061B451A42008324C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		338237071B451A42008324C9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -81,6 +83,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		333660741B58A3DC006A8F05 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				333660771B58A426006A8F05 /* YCXMultilevelMenuViewRightCell_Icon_New.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		338236F91B451A42008324C9 = {
 			isa = PBXGroup;
 			children = (
@@ -146,6 +156,7 @@
 		3382372F1B4520BB008324C9 /* YCXMultilevelMenuView */ = {
 			isa = PBXGroup;
 			children = (
+				333660741B58A3DC006A8F05 /* Resources */,
 				338237381B4542F2008324C9 /* YCXMultilevelMenuViewConsts.h */,
 				338237391B4542F2008324C9 /* YCXMultilevelMenuViewConsts.m */,
 				338237301B4520BB008324C9 /* YCXMultilevelMenuView.h */,
@@ -259,6 +270,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				333660781B58A426006A8F05 /* YCXMultilevelMenuViewRightCell_Icon_New.png in Resources */,
 				338237111B451A42008324C9 /* Main.storyboard in Resources */,
 				338237161B451A42008324C9 /* LaunchScreen.xib in Resources */,
 				338237131B451A42008324C9 /* Images.xcassets in Resources */,

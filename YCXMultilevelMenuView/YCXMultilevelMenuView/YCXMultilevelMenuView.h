@@ -86,12 +86,20 @@
 @property (nonatomic, weak) id<YCXMultilevelMenuViewDataSource> dataSource;
 @property (nonatomic, weak) id<YCXMultilevelMenuViewDelegate> delegate;
 
+
 /** 左视图的宽度 */
 @property (nonatomic, assign) CGFloat  leftViewWidth;
 /** 左视图的背景色 */
 @property (nonatomic, strong) UIColor *leftViewBackgroudColor;
-/**  左视图的分割线颜色 */
+/** 左视图的分割线颜色 */
 @property (nonatomic, strong) UIColor *leftViewSeparatorColor;
+/** 左视图Cell选中情况下，标题颜色 */
+@property (nonatomic, strong) UIColor *leftViewSelectedTitleColor;
+/** 左视图Cell未选中情况下，标题颜色 */
+@property (nonatomic, strong) UIColor *leftViewUnselectedTitleColor;
+/** 左视图的标题字体 */
+@property (nonatomic, strong) UIFont *leftViewTitleFont;
+
 
 /** 右视图背景色*/
 @property (nonatomic, strong) UIColor *rightViewBackgroudColor;

@@ -10,6 +10,8 @@
 
 @interface YCXMultilevelMenuViewRightCell : UICollectionViewCell
 
+@property (nonatomic, assign) BOOL hiddenBottomLine;
+
 + (CGFloat)cellHeight;
 
 - (void)setCellWithCoverPath:(NSString *)coverPath andTitle:(NSString *)title andTopicCount:(NSString *)topicCount andContent:(NSString *)content andIsNew:(BOOL)isNew;

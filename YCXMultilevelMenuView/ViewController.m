@@ -42,12 +42,14 @@
         self.multilevelMenu.rightViewBackgroudColor = kRightViewBackgroundColor;
         self.multilevelMenu.leftViewSeparatorColor = kLeftViewSeparatorColor;
         self.multilevelMenu.leftViewBackgroudColor = kLeftViewBackgroundColor;
+        self.multilevelMenu.leftViewTitleFont = kLeftViewTitleFont;
         self.menuTop.constant = 0;
     } else {
-        self.multilevelMenu.leftViewWidth = 80;
+        self.multilevelMenu.leftViewWidth = 60;
         self.multilevelMenu.rightViewBackgroudColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.85 alpha:1];
         self.multilevelMenu.leftViewSeparatorColor = [UIColor redColor];
         self.multilevelMenu.leftViewBackgroudColor = [UIColor colorWithRed:0.769 green:0.855 blue:0.686 alpha:1];
+        self.multilevelMenu.leftViewTitleFont = [UIFont systemFontOfSize:11.0f];
         self.menuTop.constant = 80;
     }
 }
@@ -98,10 +100,10 @@
     
     NSString *rightViewHeaderTitle = @"";
     if (index == 0 && indexPath.section == 0) {
-        rightViewHeaderTitle = @"收藏板块";
+        rightViewHeaderTitle = @"我收藏的";
     }
     if (index == 0 && indexPath.section == 1) {
-        rightViewHeaderTitle = @"推荐板块";
+        rightViewHeaderTitle = @"推荐版块";
     }
     
     UIView *view = [UIView new];
@@ -125,8 +127,8 @@
     }
     [view addSubview:star];
     
-    UIView *bottomLine = [[UIView alloc] initWithFrame:CGRectMake(10, view.frame.size.height- 0.5, view.frame.size.width - 20, 0.5)];
-    [bottomLine setBackgroundColor:[UIColor lightGrayColor]];
+    UIView *bottomLine = [[UIView alloc] initWithFrame:CGRectMake(10, view.frame.size.height- 1, view.frame.size.width - 20, 1)];
+    [bottomLine setBackgroundColor:YCXColorFromRGB(0xe5e5e5)];
     [view addSubview:bottomLine];
     
     return view;
@@ -142,7 +144,7 @@
     BOOL isNew = arc4random()%2 == 0;
     
     [cell setCellWithCoverPath:coverPath andTitle:title andTopicCount:topicCount andContent:content andIsNew:isNew];
-    
+    cell.hiddenBottomLine = indexPath.row == 1;
     return cell;
 }
 

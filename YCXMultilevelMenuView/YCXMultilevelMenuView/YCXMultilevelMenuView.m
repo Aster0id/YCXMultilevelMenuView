@@ -141,6 +141,10 @@
     cell.separatorColor = self.leftViewSeparatorColor;
     cell.unselectedBackgroundColor = self.leftViewBackgroudColor;
     cell.selectedBackgroundColor = self.rightViewBackgroudColor;
+    cell.unselectedTitleColor = self.leftViewUnselectedTitleColor;
+    cell.selectedTitleColor = self.leftViewSelectedTitleColor;
+    cell.titleFont = self.leftViewTitleFont;
+    
     [cell setCellWithTitle:[self.dataSource menuView:self leftViewTitleAtChildIndex:indexPath.row]];
     
     [cell layoutSubviews];
@@ -255,6 +259,21 @@
 
 - (void)setLeftViewSeparatorColor:(UIColor *)leftViewSeparatorColor {
     _leftViewSeparatorColor = leftViewSeparatorColor;
+    [self updateSubviews];
+}
+
+- (void)setLeftViewSelectedTitleColor:(UIColor *)leftViewSelectedTitleColor {
+    _leftViewUnselectedTitleColor = leftViewSelectedTitleColor;
+    [self updateSubviews];
+}
+
+-(void)setLeftViewUnselectedTitleColor:(UIColor *)leftViewUnselectedTitleColor {
+    _leftViewUnselectedTitleColor = leftViewUnselectedTitleColor;
+    [self updateSubviews];
+}
+
+- (void)setLeftViewTitleFont:(UIFont *)leftViewTitleFont {
+    _leftViewTitleFont = leftViewTitleFont;
     [self updateSubviews];
 }
 
